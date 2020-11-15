@@ -2,3 +2,4 @@
 Following a youtube tutorial to create a clone of facebook using React.
 
 Left off on the video at the 1:22:22 mark
+Left off on the video at the 1:36:01 mark - need to find approiate dummy content (pics)
