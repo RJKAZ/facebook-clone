@@ -6,11 +6,15 @@ import PhotoLibraryIcon from "@material-ui/icons/PhotoLibrary";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 
 function MessageSender() {
-  const [input, setInput] = useState('')
+  const [input, setInput] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
 
-const handleSubmit = e => {
+const handleSubmit = (e) => {
   e.preventDefault();
-}
+//some clever DB stuff
+  setInput("");
+setImageUrl("");
+};
 
   return (
     <div className="messageSender">
@@ -26,7 +30,10 @@ const handleSubmit = e => {
           />
 
 
-          <input placeholder="image URL (optional)"/>
+          <input
+          value={imageUrl}
+          onChange={(e) => setImageUrl(e.target.value)}
+          placeholder="image URL (optional)"/>
 
           <button onClick={handleSubmit} type="submit">
             Hidden submit

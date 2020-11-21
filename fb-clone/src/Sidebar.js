@@ -16,7 +16,7 @@ function Sidebar() {
       <SidebarRow src="" title="Reese Kaz"/>
       <SidebarRow Icon={LocalHospitalIcon} title="Covid-19 Information Center"/>
       <SidebarRow Icon={EmojiFlagsIcon} title="Pages"/>
-      <SidebarRow Icon={PeopleIcon} title="Freinds"/>
+      <SidebarRow Icon={PeopleIcon} title="Friends"/>
       <SidebarRow Icon={ChatIcon} title="Messenger"/>
       <SidebarRow Icon={StorefrontIcon} title="Marketplace"/>
       <SidebarRow Icon={VideoLibraryIcon} title="Videos"/>
