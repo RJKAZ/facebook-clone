@@ -1,39 +1,41 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import "./Feed.css";
 import StoryReel from "./StoryReel";
 import MessageSender from "./MessageSender";
 import Post from "./Post";
+import db from "./firebase";
 
 function Feed() {
+  const [posts, setPosts] = useState([]);
+
+useEffect(() => {
+  db.collection('posts')
+  .orderBy( 'timestamp')
+  .onSnapshot((snapshot => 
+    setPosts(snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() })))
+  ));
+
+}, []);
+
   return (
     <div className='feed'>
       <StoryReel />
       <MessageSender />
 
-      <Post
+      {posts.map((post) => (
+        <Post
+        key={post.id}
+        profilePic={post.data.profilePic}
+        message={post.data.message}
+        timestamp={post.data.timestamp}
+        username={post.data.username}
+        image={post.data.image}
+        />
+      ))}
+
+
       
-      profilePic="https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/122764332_10158805753339146_907963516673557329_o.jpg?_nc_cat=100&ccb=2&_nc_sid=09cbfe&_nc_ohc=aFDqNYQY-CcAX_6BTLj&_nc_ht=scontent-lga3-1.xx&oh=283221191729560d9323d3bfe1046f67&oe=5FDD9617"
-      message="WOW this works!"
-      timestamp="This is a timestamp"
-      username="rjkaz"
-      image="https://code.org/shared/images/social-media/codeorg2019_social.png"
-      />
-      <Post 
-      profilePic="https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/122764332_10158805753339146_907963516673557329_o.jpg?_nc_cat=100&ccb=2&_nc_sid=09cbfe&_nc_ohc=aFDqNYQY-CcAX_6BTLj&_nc_ht=scontent-lga3-1.xx&oh=283221191729560d9323d3bfe1046f67&oe=5FDD9617"
-      message="WOW this works!"
-      timestamp="This is a timestamp"
-      username="rjkaz"
-      image="https://code.org/shared/images/social-media/codeorg2019_social.png"
-      
-      />
-      <Post
-      profilePic="https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/122764332_10158805753339146_907963516673557329_o.jpg?_nc_cat=100&ccb=2&_nc_sid=09cbfe&_nc_ohc=aFDqNYQY-CcAX_6BTLj&_nc_ht=scontent-lga3-1.xx&oh=283221191729560d9323d3bfe1046f67&oe=5FDD9617"
-      message="WOW this works!"
-      timestamp="This is a timestamp"
-      username="rjkaz"
-      image="https://code.org/shared/images/social-media/codeorg2019_social.png"
-      
-      />
+    
 
       
       
